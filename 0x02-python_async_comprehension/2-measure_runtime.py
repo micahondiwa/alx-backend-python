@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
-"""2-measure_runtime.py"""
-
+""" 2-measure_runtime """
+import time
 import asyncio
-import random
 
 async_comprehension = __import__("1-async_comprehension").async_comprehension
 
