@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""1-concurrent_coroutines.py"""
+"""concurrent_coroutines.py"""
 
 from typing import List
 import asyncio
