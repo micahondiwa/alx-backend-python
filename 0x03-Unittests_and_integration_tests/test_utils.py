@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-tests for utils module
+test for utils module
 """
 import unittest
 from unittest.mock import patch, Mock
