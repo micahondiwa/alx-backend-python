@@ -35,3 +35,6 @@ def connect_to_prodev():
     except mysql.connector.Error as err:
         print(f"Error connecting to ALX_prodev: {err}")
         return None
+
+def create_table(connection):
+    
