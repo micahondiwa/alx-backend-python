@@ -38,5 +38,11 @@ def connect_to_prodev():
 
 def create_table(connection):
     query="""
-
+    CREATE TABLE IF NOT EXISTS user_data (
+        user_id VARCHAR(36) PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        age DECIMAL(5,2) NOT NULL,
+        INDEX(user_id) 
+        );
     """
