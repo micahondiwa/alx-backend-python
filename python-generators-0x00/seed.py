@@ -54,3 +54,26 @@ def create_table(connection):
         print("Table user_data created successfully")
     except mysql.connector.Error as err:
         print(f"Failed to create table: {err}")
+
+def insert_data(connection, filename):
+    try:
+        cursor=connection.cursor()
+        with open(filename, newline='') as csvfile:
+            reader=csv.DictReader(csvfile)
+            for row in reader:
+                check_query = "SELECT user_id FROM user_data WHERE user_id = %s"
+                cursor.execute(check_query, (row['user_id'], ))
+                if not cursor.fetchnone():
+                    insert_query = """
+                    INSERT INTO user_data (user_id, name, email, age)
+                    VALUES (%s, %s, %s, %s)
+                    """
+                    cursor.execute(insert_query, (
+                        row['user_id'],
+                        row['name'],
+                        row['email'],
+                        row['age']
+                    ))
+            connection.commit()
+            cursor.close()
+            print("Data inserted successfully")
