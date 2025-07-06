@@ -2,7 +2,7 @@
 
 import mysql.connector
 
-def streamusersinbatches(batchsize):
+def stream_users_in_batches(batch_size):
     connection = mysql.connector.connect(
         host='127.0.0.1',
         user='root',
@@ -14,7 +14,7 @@ def streamusersinbatches(batchsize):
     cursor.execute("SELECT * FROM user_data")
 
     while True:
-        rows = cursor.fetchmany(batchsize)
+        rows = cursor.fetchmany(batch_size)
         if not rows:
             break
         yield rows
@@ -22,8 +22,8 @@ def streamusersinbatches(batchsize):
     cursor.close()
     connection.close()
 
-def batch_processing(batchsize):
-    for batch in streamusersinbatches(batchsize):
+def batch_processing(batch_size):
+    for batch in stream_users_in_batches(batch_size):
         for user in batch:
             if user['age'] > 25:
                 print(user)
