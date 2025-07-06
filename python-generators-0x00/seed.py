@@ -3,4 +3,4 @@
 import mysql.connector
 import csv
 import uuid
-from mysql,connector import errorcode 
+from mysql.connector import errorcode 
