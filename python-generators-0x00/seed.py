@@ -79,3 +79,4 @@ def insert_data(connection, filename):
         print("Data inserted successfully")
     except Exception as e:
         print(f"Error inserting data: {e}")
+
