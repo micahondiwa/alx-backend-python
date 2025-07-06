@@ -37,4 +37,6 @@ def connect_to_prodev():
         return None
 
 def create_table(connection):
-    
+    query="""
+
+    """
