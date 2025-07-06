@@ -10,7 +10,7 @@ def connect_db():
         return mysql.connector.connect(
             host="localhost",
             user="rot",
-            password="Admin@123"
+            password="Admin@123" 
         )
     except mysql.connector.Error as err:
         print(f"Error conncting: {err}")
