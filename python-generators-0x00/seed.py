@@ -80,3 +80,9 @@ def insert_data(connection, filename):
     except Exception as e:
         print(f"Error inserting data: {e}")
 
+def stream_users(connection):
+    cursor=connection.cursor(disctionary=True)
+    cursor.execute("SELECT * FROM user_data")
+    for row in cursor:
+        yield row
+    cursor.close()
