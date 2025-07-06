@@ -74,6 +74,8 @@ def insert_data(connection, filename):
                         row['email'],
                         row['age']
                     ))
-            connection.commit()
-            cursor.close()
-            print("Data inserted successfully")
+        connection.commit()
+        cursor.close()
+        print("Data inserted successfully")
+    except Exception as e:
+        print(f"Error inserting data: {e}")
