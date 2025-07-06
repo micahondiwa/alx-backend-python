@@ -46,3 +46,11 @@ def create_table(connection):
         INDEX(user_id) 
         );
     """
+    try:
+        cursor = connection.cursor()
+        cursor.execute(query)
+        connection.commit()
+        cursor.close()
+        print("Table user_data created successfully")
+    except mysql.connector.Error as err:
+        print(f"Failed to create table: {err}")
