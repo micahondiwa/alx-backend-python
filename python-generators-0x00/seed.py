@@ -86,3 +86,4 @@ def stream_users(connection):
     for row in cursor:
         yield row
     cursor.close()
+    
