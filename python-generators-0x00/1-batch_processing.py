@@ -9,3 +9,15 @@ def stream_user_in_batches(batch_size):
         password='Admin@123',
         database='ALX_prodev'
     )
+
+    cursor = connection.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM user_data")
+
+    while True:
+        rows = cursor.fetchmany(batch_size)
+        if not rows:
+            break
+        yield rows
+
+    cursor.close()
+    connection.close()
