@@ -11,3 +11,12 @@ def paginate_users(page_size, offset):
     connection.close()
 
     return rows
+
+def lazy_pagination(page_size):
+    offset = 0
+    while True:
+        page = paginate_users(page_size, offset)
+        if not page:
+            break 
+        yield page
+        offset += page_size
