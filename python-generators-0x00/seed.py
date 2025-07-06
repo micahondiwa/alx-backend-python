@@ -8,7 +8,7 @@ from mysql.connector import errorcode
 def connect_db():
     try:
         return mysql.connector.connect(
-            host="localhost",
+            host="127.0.0.1",
             user="rot",
             password="Admin@123" 
         )
@@ -27,7 +27,7 @@ def create_database(connection):
 def connect_to_prodev():
     try:
         return mysql.connector.connect(
-            host='localhost',
+            host='127.0.0.1',
             user='root',
             password='Admin@123',
             database='ALX_prodev'
@@ -86,4 +86,3 @@ def stream_users(connection):
     for row in cursor:
         yield row
     cursor.close()
-    
