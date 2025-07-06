@@ -18,6 +18,7 @@ def stream_users_in_batches(batch_size):
         if not rows:
             break
         yield rows
+    return rows
 
     cursor.close()
     connection.close()
