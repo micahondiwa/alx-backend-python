@@ -13,4 +13,5 @@ def connect_db():
             password=" "
         )
     except mysql.connector.Error as err:
-        
+        print(f"Error conncting: {}")
+        return None
