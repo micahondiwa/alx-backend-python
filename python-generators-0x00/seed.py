@@ -2,4 +2,5 @@
 
 import mysql.connector
 import csv
-import uuid 
+import uuid
+from mysql,connector import errorcode 
