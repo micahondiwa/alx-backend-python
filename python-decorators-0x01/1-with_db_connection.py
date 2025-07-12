@@ -3,3 +3,5 @@ import functools
 
 def with_db_connection(func):
     pass
+
+@with_db_connection
