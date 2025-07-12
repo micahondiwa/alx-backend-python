@@ -8,6 +8,9 @@ def with_db_connection(func):
         conn = sqlite3.connect('users.db')
         try:
             result = func(conn, *args, **kwargs)
+        finally:
+            conn.close()
+    return wrapper
 
 @with_db_connection
 @retry_on_failure(retry=3, delay=1)
