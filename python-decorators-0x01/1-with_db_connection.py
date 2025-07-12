@@ -12,7 +12,6 @@ def with_db_connection(func):
             conn.close()
     return wrapper
     
-
 @with_db_connection
 def get_user_by_db(conn, user_id):
     cursor  = conn.cursor()
