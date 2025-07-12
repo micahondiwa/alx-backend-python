@@ -3,7 +3,13 @@ import functools
 
 #### decorator to log SQL queries 
 def log_queries():
-    pass
+    @functools.wraps(func)
+    def wrapper(*args, **Kwargs):
+        query = Kwargs.get('query')
+        if not query and len(args) > 0:
+            query = args[0]
+        return func(*args, **Kwargs)
+    return wrapper
 
 @log_queries 
 def fetch_all_users(query):
