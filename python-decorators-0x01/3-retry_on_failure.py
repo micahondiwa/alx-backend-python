@@ -7,3 +7,4 @@ import functools
 def fetch_users_with_retry(conn):
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM users")
+    return cursor.fetchall()
