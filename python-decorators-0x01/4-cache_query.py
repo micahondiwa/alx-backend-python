@@ -4,6 +4,10 @@ import functools
 
 query_cache = {}
 
+def cache_query(func):
+    @wraps(func)
+    def wrapper(conn, query, *args, **kwargs):
+        cache_query = query
 @with_db_connection
 @cache_query 
 def fecth_users_with_cache(conn, query):
