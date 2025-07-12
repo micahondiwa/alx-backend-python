@@ -12,3 +12,4 @@ def fetch_all_users(query):
     cursor.execute(query)
     results = cursor.fetchall()
     conn.close()
+    return results
