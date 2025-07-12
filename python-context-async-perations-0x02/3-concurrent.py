@@ -1,34 +1,35 @@
-import sqlite3
+import asyncio
+import aiosqlite
 
-class ExecuteQuery:
-    def __init__(self, query, params=None, db_name='users.db'):
-        self.query = query
-        self.params = params if params is not None else ()
-        self.db_name = db_name
-        self.conn = None
-        self.cursor = None
-        self.results = None
-    
-    def __enter__(self):
-        self.conn = sqlite3.connect(self.db_name)
-        self.cursor = self.conn.cursor()
-        self.cursor.execute(self.query, self.params)
-        self.results = self.cursor.fetchall()
-        return self.results
-    
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        if self.cursor:
-            self.cursor.close()
-        if self.conn:
-            self.conn.close()
-        # Return False to propagate any exceptions
-        return False
+async def async_fetch_users():
+    async with aiosqlite.connect('users.db') as db:
+        async with db.execute("SELECT * FROM users") as cursor:
+            results = await cursor.fetchall()
+            print("All users fetched")
+            return results
 
-# Using the context manager with our specific query
-with ExecuteQuery(
-    query="SELECT * FROM users WHERE age > ?",
-    params=(25,)
-) as results:
-    print("Users over 25 years old:")
-    for row in results:
-        print(row)
+async def async_fetch_older_users():
+    async with aiosqlite.connect('users.db') as db:
+        async with db.execute("SELECT * FROM users WHERE age > 40") as cursor:
+            results = await cursor.fetchall()
+            print("Older users fetched")
+            return results
+
+async def fetch_concurrently():
+    results = await asyncio.gather(
+        async_fetch_users(),
+        async_fetch_older_users()
+    )
+    return results
+
+if __name__ == '__main__':
+    # Run the concurrent queries
+    all_users, older_users = asyncio.run(fetch_concurrently())
+    
+    print("\nAll users:")
+    for user in all_users:
+        print(user)
+    
+    print("\nUsers older than 40:")
+    for user in older_users:
+        print(user)
