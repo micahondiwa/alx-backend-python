@@ -12,6 +12,18 @@ def with_db_connection(func):
             conn.close()
     return wrapper
 
+def transactional(func):
+    @wraps(func)
+    def wrapper(conn, *args, **kwargs):
+        try:
+            result = func(conn, *args, **kwargs)
+            conn.commit()
+            return result
+        except Exception e:
+            conn.rollback()
+            raise e
+    return wrapper
+
 @with_db_connection
 @retry_on_failure(retry=3, delay=1)
 def fetch_users_with_retry(conn):
