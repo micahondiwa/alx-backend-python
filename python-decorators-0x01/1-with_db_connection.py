@@ -11,3 +11,5 @@ def get_user_by_db(conn, user_id):
     return cursor.fetchone()
 
 #### Fetch user ID with automatic connection handling
+user = get_user_by_db(user_id=1)
+print(user)
