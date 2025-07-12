@@ -3,4 +3,4 @@ import functools
 
 #### decorator to log SQL queries 
 
-
+@log_queries 
