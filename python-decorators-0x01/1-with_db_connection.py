@@ -7,3 +7,4 @@ def with_db_connection(func):
 @with_db_connection
 def get_user_by_db(conn, user_id):
     cursor  = conn.cursor()
+    cursor.execute("SELECT * FROM users WHERE id= ?", (user_id,))
