@@ -1,6 +1,11 @@
 import sqlite3
 import functools
 
+def with_db_connection(func):
+    @functools.wraps(func)
+    
+
+
 @with_db_connection
 @transactional
 def update_user_email(conn, user_id, new_email):
