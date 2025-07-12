@@ -2,7 +2,7 @@ import sqlite3
 import functools
 
 #### decorator to log SQL queries 
-def log_queries():
+def log_queries(func):
     @functools.wraps(func)
     def wrapper(*args, **Kwargs):
         query = Kwargs.get('query')
