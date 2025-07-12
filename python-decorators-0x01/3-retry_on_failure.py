@@ -5,7 +5,9 @@ import functools
 def with_db_connection(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
-        
+        conn = sqlite3.connect('users.db')
+        try:
+            result = func(conn, *args, **kwargs)
 
 @with_db_connection
 @retry_on_failure(retry=3, delay=1)
