@@ -8,7 +8,9 @@ def with_db_connection(func):
         try:
             result = func(conn, *args, **kwargs)
             return result
-
+        finally:
+            conn.close()
+    return wrapper
 
 @with_db_connection
 @transactional
