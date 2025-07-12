@@ -11,3 +11,4 @@ def fetch_users_with_retry(conn):
 
 #### attempt to fetch users with automatic retry on failure
 users = fetch_users_with_retry()
+print(users)
