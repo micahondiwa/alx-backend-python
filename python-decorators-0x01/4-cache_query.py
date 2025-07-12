@@ -8,4 +8,4 @@ query_cache = {}
 @cache_query 
 def fecth_users_with_cache(conn, query):
     cursor = conn.cursor()
-    
+    cursor.execute(query)
