@@ -32,3 +32,4 @@ with ExecuteQuery(
     print("Users over 25 years old:")
     for row in results:
         print(row)
+        
