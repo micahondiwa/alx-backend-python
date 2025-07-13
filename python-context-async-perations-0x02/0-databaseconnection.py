@@ -25,3 +25,4 @@ with DatabaseConnection('users.db') as conn:
     print("Users in database:")
     for row in results:
         print(row)
+        
