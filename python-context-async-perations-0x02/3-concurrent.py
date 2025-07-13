@@ -33,3 +33,4 @@ if __name__ == '__main__':
     print("\nUsers older than 40:")
     for user in older_users:
         print(user)
+        
