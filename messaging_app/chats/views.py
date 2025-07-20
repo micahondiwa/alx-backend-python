@@ -42,10 +42,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(conversation)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-
-# ----------------------------
 # Message ViewSet
-# ----------------------------
 class MessageViewSet(viewsets.ModelViewSet):
     """
     API endpoint for listing and sending messages in a conversation.
