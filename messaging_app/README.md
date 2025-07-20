@@ -10,3 +10,5 @@
 - Follow best practices in file structure, code organization, and documentation.
 - Build a maintainable API layer using Django REST Framework (optional enhancement).
 - Validate and test APIs with real data using tools like Postman or Swagger.
+
+## Implementation Phases 
