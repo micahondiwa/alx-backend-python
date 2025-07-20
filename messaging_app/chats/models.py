@@ -32,10 +32,7 @@ class User(AbstractUser):
     def __str__(self):
         return f"{self.username} ({self.email})"
 
-
-# ----------------------------
 # Conversation Model
-# ----------------------------
 class Conversation(models.Model):
     """
     Model to track conversations between users.
