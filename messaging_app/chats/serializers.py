@@ -20,10 +20,7 @@ class UserSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ['user_id', 'created_at']
 
-
-# ----------------------------
 # Conversation Serializer
-# ----------------------------
 class ConversationSerializer(serializers.ModelSerializer):
     participants = UserSerializer(many=True, read_only=True)
 
@@ -36,10 +33,7 @@ class ConversationSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ['conversation_id', 'created_at']
 
-
-# ----------------------------
 # Message Serializer
-# ----------------------------
 class MessageSerializer(serializers.ModelSerializer):
     sender = UserSerializer(read_only=True)
     conversation = serializers.PrimaryKeyRelatedField(queryset=Conversation.objects.all())
