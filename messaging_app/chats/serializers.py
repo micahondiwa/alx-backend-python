@@ -48,7 +48,6 @@ class ConversationSerializer(serializers.ModelSerializer):
 
 # ----------------------------
 # Message Serializer
-# ----------------------------
 class MessageSerializer(serializers.ModelSerializer):
     sender = UserSerializer(read_only=True)
     conversation = serializers.PrimaryKeyRelatedField(queryset=Conversation.objects.all())
