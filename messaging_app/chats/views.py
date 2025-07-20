@@ -4,10 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Conversation, Message
 from .serializers import ConversationSerializer, MessageSerializer, UserSerializer
 
-
-# ----------------------------
 # Conversation ViewSet
-# ----------------------------
 class ConversationViewSet(viewsets.ModelViewSet):
     """
     API endpoint for listing and creating conversations.
