@@ -48,10 +48,7 @@ class Conversation(models.Model):
     def __str__(self):
         return f"Conversation {self.conversation_id}"
 
-
-# ----------------------------
 # Message Model
-# ----------------------------
 class Message(models.Model):
     """
     Model to store messages sent between users in a conversation.
