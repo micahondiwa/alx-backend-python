@@ -32,7 +32,7 @@
 
 4. URL Routing
 - Define app-specific routes using urls.py
-        Use include() to modularize routes per app
+- Use include() to modularize routes per app
         Follow RESTful naming conventions: /api/properties/, /api/bookings/<id>/
         Create nested routes when necessary
 
