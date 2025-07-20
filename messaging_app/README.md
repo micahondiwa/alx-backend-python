@@ -34,9 +34,9 @@
 - Define app-specific routes using urls.py
 - Use include() to modularize routes per app
 - Follow RESTful naming conventions: /api/properties/, /api/bookings/<id>/
-        Create nested routes when necessary
+- Create nested routes when necessary
 
-    Best Practices and Documentation
+5. Best Practices and Documentation
         Use views.py to separate logic and ensure Single Responsibility
         Document endpoints using README or auto-generated documentation tools
         Keep configuration settings modular (e.g., using .env or settings/ directory structure)
