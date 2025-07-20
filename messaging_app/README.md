@@ -25,7 +25,7 @@
 - Add field types, constraints, and default behaviors
 - Apply migrations and use Django Admin for verification
 
-3. Establishing Relationships
+3. **Establishing Relationships**
 - Implement foreign keys, many-to-many relationships, and one-to-one links
 - Use related_name, on_delete, and reverse relationships effectively
 - Use Django shell to test object relations
