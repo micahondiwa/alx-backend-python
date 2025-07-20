@@ -14,7 +14,7 @@
 ## Implementation Phases 
 
 1. Project Setup and Environment Configuration
-        Create a virtual environment
+- Create a virtual environment
         Install Django
         Scaffold the project with django-admin startproject and python manage.py startapp
         Configure settings.py (INSTALLED_APPS, middleware, CORS, etc.)
