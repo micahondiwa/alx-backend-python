@@ -32,10 +32,7 @@ class UserSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
-
-# ----------------------------
 # Conversation Serializer
-# ----------------------------
 class ConversationSerializer(serializers.ModelSerializer):
     participants = UserSerializer(many=True, read_only=True)
 
