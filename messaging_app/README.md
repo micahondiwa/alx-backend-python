@@ -17,7 +17,7 @@
 - Create a virtual environment
 - Install Django
 - Scaffold the project with django-admin startproject and python manage.py startapp
-        Configure settings.py (INSTALLED_APPS, middleware, CORS, etc.)
+- Configure settings.py (INSTALLED_APPS, middleware, CORS, etc.)
 
     Defining Data Models
         Identify core models based on requirements (e.g., User, Property, Booking)
