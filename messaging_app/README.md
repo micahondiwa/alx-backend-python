@@ -30,7 +30,7 @@
 - Use related_name, on_delete, and reverse relationships effectively
 - Use Django shell to test object relations
 
-    URL Routing
+4. URL Routing
         Define app-specific routes using urls.py
         Use include() to modularize routes per app
         Follow RESTful naming conventions: /api/properties/, /api/bookings/<id>/
