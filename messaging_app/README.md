@@ -40,4 +40,4 @@
 - Use views.py to separate logic and ensure Single Responsibility
 - Document endpoints using README or auto-generated documentation tools
 - Keep configuration settings modular (e.g., using .env or settings/ directory structure)
-        Use versioned APIs (e.g., /api/v1/) to future-proof development
+- Use versioned APIs (e.g., /api/v1/) to future-proof development
