@@ -45,8 +45,6 @@ class ConversationSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ['conversation_id', 'created_at']
 
-
-# ----------------------------
 # Message Serializer
 class MessageSerializer(serializers.ModelSerializer):
     sender = UserSerializer(read_only=True)
