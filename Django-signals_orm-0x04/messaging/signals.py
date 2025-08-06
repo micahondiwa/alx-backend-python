@@ -1,29 +1,21 @@
-from django.db.models.signals import post_save, pre_save
+from django.db.models.signals import post_delete
 from django.dispatch import receiver
+from django.contrib.auth.models import User
+
 from .models import Message, Notification, MessageHistory
 
+@receiver(post_delete, sender=User)
+def cleanup_user_related_data(sender, instance, **kwargs):
+    # Delete all messages sent or received by the user
+    Message.objects.filter(sender=instance).delete()
+    Message.objects.filter(receiver=instance).delete()
 
-@receiver(post_save, sender=Message)
-def create_notification_on_message(sender, instance, created, **kwargs):
-    if created:
-        Notification.objects.create(
-            user=instance.receiver,
-            message=instance
-        )
+    # Delete all notifications for the user
+    Notification.objects.filter(user=instance).delete()
 
+    # Delete all message histories they edited
+    MessageHistory.objects.filter(edited_by=instance).delete()
 
-@receiver(pre_save, sender=Message)
-def log_message_edit(sender, instance, **kwargs):
-    if instance.pk:  # only if message already exists
-        try:
-            original = Message.objects.get(pk=instance.pk)
-            if original.content != instance.content:
-                # Log old content
-                MessageHistory.objects.create(
-                    message=original,
-                    old_content=original.content
-                )
-                # Mark as edited
-                instance.edited = True
-        except Message.DoesNotExist:
-            pass
+    # Optionally: delete histories of messages sent by user
+    user_messages = Message.objects.filter(sender=instance)
+    MessageHistory.objects.filter(message__in=user_messages).delete()
