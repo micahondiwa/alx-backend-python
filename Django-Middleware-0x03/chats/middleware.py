@@ -1,11 +1,11 @@
 import logging
 import time
 from datetime import datetime
-from django.http import HttpResponseForbidden
 from collections import defaultdict
+from django.http import HttpResponseForbidden
 
 
-# 1. Logs all requests
+# 1. Logs all requests with timestamp, user, and path
 class RequestLoggingMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
@@ -32,7 +32,6 @@ class RestrictAccessByTimeMiddleware:
 
     def __call__(self, request):
         current_hour = datetime.now().hour
-        # Only allow between 18 (6PM) and 21 (9PM)
         if request.path.startswith('/chat/'):
             if current_hour < 18 or current_hour > 21:
                 return HttpResponseForbidden("Access to chat is restricted at this time.")
@@ -72,3 +71,28 @@ class OffensiveLanguageMiddleware:
         else:
             ip = request.META.get('REMOTE_ADDR')
         return ip
+
+
+# 4. Restricts access to certain chat actions to admin/moderator users
+class RolePermissionMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        # Define the restricted paths (only admin/moderator allowed)
+        protected_paths = ['/chat/manage/', '/chat/delete/', '/chat/moderate/']
+
+        if request.path in protected_paths:
+            user = request.user
+            if not user.is_authenticated:
+                return HttpResponseForbidden("Authentication required.")
+
+            # Allow superuser
+            if user.is_superuser:
+                return self.get_response(request)
+
+            # Check group membership (admin or moderator)
+            if not user.groups.filter(name__in=['admin', 'moderator']).exists():
+                return HttpResponseForbidden("You do not have permission to access this resource.")
+
+        return self.get_response(request)
