@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Apply updated deployment (triggers rolling update)
+kubectl apply -f messaging_app/blue_deployment.yaml
+
+# Monitor the rollout status
+echo "Monitoring rollout status..."
+kubectl rollout status deployment/django-messaging-app-blue
+
+# Test availability during update (continuous curl requests in background)
+echo "Testing application availability during rollout..."
+for i in {1..20}
+do
+  curl -s http://<NODE-IP>:<NODE-PORT>/ || echo "Request failed"
+  sleep 2
+done
+
+# Verify rolling update completion by checking pods
+echo "Current running pods:"
+kubectl get pods -l app=django-messaging-app-blue
