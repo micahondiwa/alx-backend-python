@@ -5,7 +5,7 @@ services:
     image: mysql:8.0
     container_name: messaging_db
     restart: always
-    environment: # checker wants this section
+    environment:
       MYSQL_USER: messaging_user
       MYSQL_DB: messaging_db
       MYSQL_PASSWORD: messaging_pass
@@ -13,13 +13,13 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - db_data:/var/lib/mysql
+      - db_data:/var/lib/mysql  # Persist MySQL data
 
   web:
     build: .
     container_name: messaging_web
     restart: always
-    command: python3 manage.py runserver 0.0.0.0:8000  # checker wants python3 manage.py runserver
+    command: python3 manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
     ports:
@@ -31,5 +31,6 @@ services:
     depends_on:
       - db
 
+# Named volume for MySQL data persistence
 volumes:
   db_data:
