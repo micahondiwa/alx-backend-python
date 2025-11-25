@@ -24,7 +24,7 @@ class ExecuteQuery:
         # Return False to propagate any exceptions
         return False
 
-# Using the context manager with our specific query
+# Using the context manager with specific query
 with ExecuteQuery(
     query="SELECT * FROM users WHERE age > ?",
     params=(25,)
